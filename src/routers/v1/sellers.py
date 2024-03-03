@@ -79,7 +79,6 @@ async def update_seller(seller_id: int, new_data: SellerUpdate, session: DBSessi
         updated_seller.last_name = new_data.last_name
         updated_seller.email = new_data.email
         updated_seller.password = updated_seller.password
-        updated_seller.id = updated_seller.id
 
         await session.flush()
 
@@ -92,14 +91,6 @@ async def update_seller(seller_id: int, new_data: SellerUpdate, session: DBSessi
 @sellers_router.delete("/{seller_id}")
 async def delete_seller(seller_id: int, session: DBSession):
     deleted_seller = await session.get(Seller, seller_id)
-
-    query = select(Book).filter(Book.seller_id==seller_id)
-    books_from_db = await session.execute(query)
-    books_from_db = books_from_db.scalars().all()
-    
-    if books_from_db:
-        for book in books_from_db:
-            await session.delete(book)
 
     if deleted_seller:
         await session.delete(deleted_seller)

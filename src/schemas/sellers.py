@@ -5,11 +5,10 @@ class BaseSeller(BaseModel):
     first_name: str
     last_name: str
     email: str
-    password: str
 
 
 class IncomingSeller(BaseSeller):
-    pass
+    password: str
 
 
 class ReturnedSeller(BaseSeller):

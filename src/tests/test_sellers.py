@@ -24,7 +24,6 @@ async def test_create_seller(async_client):
     assert result_data["first_name"] == data["first_name"]
     assert result_data["last_name"] == data["last_name"]
     assert result_data["email"] == data["email"]
-    assert result_data["password"] == data["password"]
 
 
 ### 2. GET /seller/seller_1
